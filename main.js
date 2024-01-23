@@ -27,6 +27,7 @@ let numPlayersPerTeam;
 let chosenConfig;
 let numTeams;
 let userDraftPosition;
+let removePlayers;
 let draftType;
 let userTeam;
 let currentPickNumber = 0;
@@ -256,6 +257,9 @@ async function setupDraft() {
             playerData.rankADP
         );
     }));
+
+    const sortedArrayDesc = playerObjects.slice().sort((a, b) => b.fantasy_average - a.fantasy_average);
+    const removeUnwated = sortedArrayDesc.slice(removePlayers);
 
     availablePlayers = removeUnwated;
     return removeUnwated;
